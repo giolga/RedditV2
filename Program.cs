@@ -20,6 +20,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options => {
     options.UseLazyLoadingProxies();
 });
 builder.Services.AddScoped<IPostsRepository, PostsRepository>();
+builder.Services.AddScoped<ICommunityRepository, CommunityRepository>();
 // Scoped, Singleton, Transient
 
 builder.Services.AddCors(options => options.AddDefaultPolicy(policy =>
