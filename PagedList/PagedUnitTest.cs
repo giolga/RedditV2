@@ -10,6 +10,8 @@ namespace PagedList
     {
         public async Task<PagedList<T>> Pagination<T>(IQueryable<T> items, int pageNumber, int pageSize)
         {
+            if (pageSize <= 0 || pageNumber <= 0)
+                return null;
             return await PagedList<T>.CreateAsync(items, pageNumber, pageSize);
         }
 
@@ -37,7 +39,7 @@ namespace PagedList
 
             Assert.Equal("Israel", pagedList.Items[0].Name);
             Assert.Equal("Alex", pagedList.Items[1].Name);
-            Assert.True(pagedList.HasPreviousPage); 
+            Assert.True(pagedList.HasPreviousPage);
             Assert.True(pagedList.HasNextPage);
             Assert.Equal(2, pagedList.Items.Count);
 
@@ -52,11 +54,11 @@ namespace PagedList
             Assert.False(pagedList2.HasPreviousPage);
             Assert.True(pagedList2.HasNextPage);
             Assert.Equal("Kamaru", pagedList2.Items[1].Name);
-            Assert.NotEmpty(pagedList2.Items);
+            Assert.NotEmpty(pagedList2.Items); //List not empty! test case passed
 
             pagedList2.Items = new List<User>();
 
-            Assert.Empty(pagedList2.Items);
+            Assert.Empty(pagedList2.Items); // List empty! test case passed
 
             int pageNumber3 = 2;
             int pageSize3 = 5;
@@ -65,6 +67,19 @@ namespace PagedList
 
             Assert.True(pageSize3 > pagedList3.Items.Count); //PageSize is larger then the total number of items on the second page (4 users)
             Assert.Equal(4, pagedList3.Items.Count);
+            Assert.True(pagedList3.TotalCount > pageSize3); // total count is more than pageSize
+
+            int pageNumber4 = 4;
+            int pageSize4 = 0;
+
+            var pagedList4 = await Pagination(queryableUsers, pageNumber4, pageSize4);
+            Assert.True(pagedList4 is null); //page size or number is 0 or less
+
+            int pageNumber5 = 2;
+            int pageSize5 = 3;
+
+            var pagedList5 = await Pagination(queryableUsers, pageNumber5, pageSize5);
+
         }
 
 
