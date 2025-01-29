@@ -36,8 +36,22 @@ namespace PagedList
             var pagedList = await Pagination(queryableUsers, pageNumber, pageSize);
 
             Assert.Equal("Israel", pagedList.Items[0].Name);
+            Assert.Equal("Alex", pagedList.Items[1].Name);
+            Assert.True(pagedList.HasPreviousPage); 
+            Assert.True(pagedList.HasNextPage);
+            Assert.Equal(2, pagedList.Items.Count);
 
+
+
+            int pageNumber2 = 1;
+            int pageSize2 = 4;
+
+            var pagedList2 = await Pagination(queryableUsers, pageNumber2, pageSize2);
+
+
+            Assert.Equal("Ilia", pagedList2.Items[0].Name);
         }
+
 
         [Fact]
         public async Task Community_test()
@@ -84,6 +98,7 @@ namespace PagedList
             Assert.True(pagedList2.HasPreviousPage);
             Assert.Equal("Networking Community", pagedList2.Items[0].Name);
             Assert.NotEqual(communities.Count, pagedList2.Items.Count);
+
         }
 
         [Fact]
@@ -159,7 +174,7 @@ namespace PagedList
         {
             return new List<User>
                 {
-                    new User { Name = "randomname", Email = "kumi@gmail.com" },
+                    new User { Name = "Ilia", Email = "kumi@gmail.com" },
                     new User { Name = "Kamaru", Email = "nightmare@gmail.com" },
                     new User { Name = "Israel", Email = "the_last_stylebender@gmail.com" },
                     new User { Name = "Alex", Email = "poatan@gmail.com" },
