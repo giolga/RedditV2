@@ -2,9 +2,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34525.116
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reddit", "Reddit.API\Reddit.csproj", "{A09C6E85-3D09-402A-8DAD-F3D0D6C1C565}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Reddit", "Reddit.API\Reddit.csproj", "{A09C6E85-3D09-402A-8DAD-F3D0D6C1C565}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reddit.UnitTests", "Reddit.UnitTests\Reddit.UnitTests.csproj", "{89909192-807D-47E5-93C2-9EFC09045695}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Reddit.UnitTests", "Reddit.UnitTests\Reddit.UnitTests.csproj", "{89909192-807D-47E5-93C2-9EFC09045695}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PagedList", "PagedList\PagedList.csproj", "{07A66F25-7ACB-4F48-A7FB-D2FEFCA40E42}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -20,6 +22,10 @@ Global
 		{89909192-807D-47E5-93C2-9EFC09045695}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{89909192-807D-47E5-93C2-9EFC09045695}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{89909192-807D-47E5-93C2-9EFC09045695}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07A66F25-7ACB-4F48-A7FB-D2FEFCA40E42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07A66F25-7ACB-4F48-A7FB-D2FEFCA40E42}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07A66F25-7ACB-4F48-A7FB-D2FEFCA40E42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07A66F25-7ACB-4F48-A7FB-D2FEFCA40E42}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
