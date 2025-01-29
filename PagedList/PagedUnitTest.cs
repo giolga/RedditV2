@@ -42,7 +42,6 @@ namespace PagedList
             Assert.Equal(2, pagedList.Items.Count);
 
 
-
             int pageNumber2 = 1;
             int pageSize2 = 4;
 
@@ -50,6 +49,22 @@ namespace PagedList
 
 
             Assert.Equal("Ilia", pagedList2.Items[0].Name);
+            Assert.False(pagedList2.HasPreviousPage);
+            Assert.True(pagedList2.HasNextPage);
+            Assert.Equal("Kamaru", pagedList2.Items[1].Name);
+            Assert.NotEmpty(pagedList2.Items);
+
+            pagedList2.Items = new List<User>();
+
+            Assert.Empty(pagedList2.Items);
+
+            int pageNumber3 = 2;
+            int pageSize3 = 5;
+
+            var pagedList3 = await Pagination(queryableUsers, pageNumber3, pageSize3);
+
+            Assert.True(pageSize3 > pagedList3.Items.Count); //PageSize is larger then the total number of items on the second page (4 users)
+            Assert.Equal(4, pagedList3.Items.Count);
         }
 
 
@@ -93,7 +108,7 @@ namespace PagedList
             int pageSize2 = 2;
 
             var pagedList2 = await Pagination(queryableCommunities, pageNumber2, pageSize2); //Page should have 1 article
-            Assert.Equal(1, pagedList2.Items.Count);
+            Assert.Single(pagedList2.Items);
             Assert.False(pagedList2.HasNextPage);
             Assert.True(pagedList2.HasPreviousPage);
             Assert.Equal("Networking Community", pagedList2.Items[0].Name);
@@ -337,7 +352,6 @@ namespace PagedList
                 }
             };
         }
-
 
         private List<Comment> Comments()
         {
